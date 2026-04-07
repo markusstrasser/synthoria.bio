@@ -6,86 +6,189 @@
   <title>Synthoria</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: oklch(0.99 0.006 85);
-      color: oklch(0.28 0.02 264);
-      font-family: 'Cormorant Garamond', Georgia, serif;
+    :root {
+      --bg:              oklch(0.99 0.006 85);
+      --text-heading:    oklch(0.28 0.02 264);
+      --text-body:       oklch(0.38 0.015 264);
+      --text-muted:      oklch(0.52 0.01 264);
+      --text-faint:      oklch(0.68 0.005 264);
+      --link:            oklch(0.48 0.2 264);
+      --link-hover:      oklch(0.52 0.22 24);
+      --border-bio:      oklch(0.44 0.12 294 / 0.45);
+      --border-light:    oklch(0.88 0.005 264);
+      --font:            'Cormorant Garamond', Georgia, serif;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text-body);
+      font-family: var(--font);
+      font-size: 20px;
       min-height: 100svh;
+    }
+
+    body {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 3rem 2rem;
+      padding: 3rem 1.5rem 4rem;
     }
 
     main {
-      max-width: 38rem;
-      width: 100%;
+      width: min(100%, 600px);
     }
 
-    h1 {
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    /* Nav-like wordmark */
+    header {
+      width: min(100%, 600px);
       margin-bottom: 2rem;
-      color: oklch(0.28 0.02 264);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
-    p {
-      font-size: 1.35rem;
-      line-height: 1.65;
-      color: oklch(0.38 0.015 264);
+    .wordmark {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-family: var(--font);
+    }
+
+    .wordmark-sep {
+      flex: 1;
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* Bio card — matches publishing BioCard */
+    .bio-card {
+      border: 0.1rem solid var(--border-bio);
+      border-radius: 0.4rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .bio-card p {
+      font-size: 1rem;
+      font-weight: 350;
+      line-height: 1.55;
+      color: var(--text-body);
+    }
+
+    .bio-card p + p {
+      margin-top: 0.75rem;
+    }
+
+    .bio-card a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .bio-card a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    /* Section header — matches publishing section style */
+    .section-label {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text-heading);
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.3rem;
       margin-bottom: 1rem;
+      margin-top: 2rem;
     }
 
-    p + p {
-      margin-top: 0;
+    /* Tag list */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.75rem;
+      list-style: none;
     }
 
+    .tags li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .tags li::before {
+      content: "→ ";
+      color: var(--border-bio);
+    }
+
+    /* Contact */
     .contact {
       margin-top: 2.5rem;
-      font-size: 1rem;
-      color: oklch(0.52 0.01 264);
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
     .contact a {
-      color: oklch(0.48 0.2 264);
+      color: var(--link);
       text-decoration: none;
     }
 
     .contact a:hover {
+      color: var(--link-hover);
       text-decoration: underline;
     }
 
     footer {
-      margin-top: 4rem;
-      font-size: 0.75rem;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.7rem;
       letter-spacing: 0.06em;
-      color: oklch(0.68 0.005 264);
+      color: var(--text-faint);
+      width: min(100%, 600px);
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 2rem 1rem 3rem; font-size: 18px; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Synthoria</h1>
+  <header>
+    <span class="wordmark">Synthoria</span>
+    <div class="wordmark-sep"></div>
+  </header>
 
-    <p>
-      Algorithms for whole-genome sequencing interpretation
-      and population-scale genomic inference.
-    </p>
-    <p>
-      Research-grade pipelines. Open methods.
-    </p>
+  <main>
+    <div class="bio-card">
+      <p>
+        Algorithms for whole-genome sequencing interpretation
+        and population-scale genomic inference.
+      </p>
+      <p>
+        Research-grade pipelines built on open standards —
+        variant calling, pharmacogenomics, structural variation,
+        and population genetics.
+      </p>
+    </div>
+
+    <h2 class="section-label">Research Areas</h2>
+    <ul class="tags">
+      <li>WGS variant calling &amp; annotation</li>
+      <li>Pharmacogenomics</li>
+      <li>Structural variants</li>
+      <li>Population genetics &amp; admixture</li>
+      <li>Clinical variant interpretation</li>
+      <li>Long-read sequencing</li>
+    </ul>
 
     <div class="contact">
       <a href="mailto:research@synthoria.bio">research@synthoria.bio</a>
     </div>
-
-    <footer>© 2026 Synthoria Inc.</footer>
   </main>
+
+  <footer>© 2026 Synthoria Inc.</footer>
 </body>
 </html>
