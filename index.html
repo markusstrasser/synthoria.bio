@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synthoria</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #08090b;
+      --surface: #0e1014;
+      --border: #1e2128;
+      --text: #e8eaf0;
+      --muted: #6b7180;
+      --accent: #a8c4ff;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100svh;
+      padding: 2rem;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 3rem 3.5rem;
+      max-width: 520px;
+      width: 100%;
+    }
+
+    .wordmark {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    p {
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+    }
+
+    .contact {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: #3a3f4d;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="wordmark">Synthoria</div>
+
+    <h1>Computational genomics<br>at the <em>sequence level.</em></h1>
+
+    <p>
+      Algorithms for whole-genome interpretation, variant prioritization,
+      and population-scale inference. Research-grade pipelines built on
+      open standards — no black boxes.
+    </p>
+
+    <hr class="divider">
+
+    <div class="tags">
+      <span class="tag">WGS Analysis</span>
+      <span class="tag">Variant Calling</span>
+      <span class="tag">PGx</span>
+      <span class="tag">Structural Variants</span>
+      <span class="tag">Population Genetics</span>
+    </div>
+
+    <div class="contact">
+      Research inquiries →&nbsp;<a href="mailto:m@synthoria.bio">m@synthoria.bio</a>
+    </div>
+
+    <footer>© 2026 Synthoria Inc.</footer>
+  </div>
+</body>
+</html>
