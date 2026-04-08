@@ -3,184 +3,309 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Synthoria</title>
+  <title>Synthoria — Computational Genomics Research</title>
+  <meta name="description" content="Synthoria builds research-grade computational pipelines for whole-genome sequencing interpretation, structural variation, and population-scale genomic inference.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:              oklch(0.99 0.006 85);
-      --text-heading:    oklch(0.28 0.02 264);
-      --text-body:       oklch(0.38 0.015 264);
-      --text-muted:      oklch(0.52 0.01 264);
-      --text-faint:      oklch(0.68 0.005 264);
-      --link:            oklch(0.48 0.2 264);
-      --link-hover:      oklch(0.52 0.22 24);
-      --border-bio:      oklch(0.44 0.12 294 / 0.45);
-      --border-light:    oklch(0.88 0.005 264);
-      --font:            'Cormorant Garamond', Georgia, serif;
+      --bg:              oklch(0.99 0.004 264);
+      --text-heading:    oklch(0.22 0.025 264);
+      --text-body:       oklch(0.35 0.015 264);
+      --text-muted:      oklch(0.50 0.01 264);
+      --text-faint:      oklch(0.65 0.005 264);
+      --link:            oklch(0.45 0.15 264);
+      --link-hover:      oklch(0.40 0.18 264);
+      --accent:          oklch(0.44 0.12 294 / 0.40);
+      --accent-faint:    oklch(0.44 0.12 294 / 0.08);
+      --border-light:    oklch(0.90 0.004 264);
+      --serif:           'Cormorant Garamond', Georgia, serif;
+      --sans:            'Inter', -apple-system, sans-serif;
     }
 
-    html, body {
-      background: var(--bg);
-      color: var(--text-body);
-      font-family: var(--font);
-      font-size: 20px;
-      min-height: 100svh;
-    }
+    html { background: var(--bg); }
 
     body {
+      color: var(--text-body);
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.6;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 3rem 1.5rem 4rem;
+      padding: 0 1.5rem;
     }
 
-    main {
-      width: min(100%, 600px);
+    .page {
+      width: min(100%, 640px);
+      padding: 4rem 0 5rem;
     }
 
-    /* Nav-like wordmark */
+    /* ── Header ── */
     header {
-      width: min(100%, 600px);
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      margin-bottom: 3.5rem;
     }
 
     .wordmark {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-heading);
+    }
+
+    .location {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-top: 0.3rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      margin-bottom: 3.5rem;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--text-heading);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 0.95rem;
+      font-weight: 350;
+      line-height: 1.65;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 2.8rem;
+    }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-muted);
-      font-family: var(--font);
-    }
-
-    .wordmark-sep {
-      flex: 1;
-      border-top: 1px solid var(--border-light);
-    }
-
-    /* Bio card — matches publishing BioCard */
-    .bio-card {
-      border: 0.1rem solid var(--border-bio);
-      border-radius: 0.4rem;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .bio-card p {
-      font-size: 1rem;
-      font-weight: 350;
-      line-height: 1.55;
-      color: var(--text-body);
-    }
-
-    .bio-card p + p {
-      margin-top: 0.75rem;
-    }
-
-    .bio-card a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    .bio-card a:hover {
-      color: var(--link-hover);
-      text-decoration: underline;
-    }
-
-    /* Section header — matches publishing section style */
-    .section-label {
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--text-heading);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border-light);
-      padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
-      margin-top: 2rem;
     }
 
-    /* Tag list */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem 0.75rem;
+    /* ── Focus grid ── */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.2rem 2rem;
+    }
+
+    .focus-item {
+      padding: 0.65rem 0;
+    }
+
+    .focus-item h3 {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-heading);
+      margin-bottom: 0.2rem;
+    }
+
+    .focus-item p {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    /* ── Capabilities list ── */
+    .capabilities {
       list-style: none;
+      columns: 2;
+      column-gap: 2rem;
     }
 
-    .tags li {
+    .capabilities li {
       font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.8;
+      font-weight: 350;
+      color: var(--text-body);
+      padding: 0.35rem 0;
+      break-inside: avoid;
     }
 
-    .tags li::before {
-      content: "→ ";
-      color: var(--border-bio);
+    .capabilities li::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 0.6rem;
+      vertical-align: middle;
     }
 
-    /* Contact */
-    .contact {
+    /* ── Note ── */
+    .ruo-note {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-faint);
+      letter-spacing: 0.02em;
+      line-height: 1.6;
       margin-top: 2.5rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border-light);
     }
 
-    .contact a {
+    /* ── Contact ── */
+    .contact {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--accent-faint);
+      border-radius: 0.4rem;
+    }
+
+    .contact p {
+      font-size: 0.88rem;
+      font-weight: 350;
+      color: var(--text-body);
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 400;
       color: var(--link);
       text-decoration: none;
+      letter-spacing: 0.01em;
     }
 
-    .contact a:hover {
+    .contact-links a:hover {
       color: var(--link-hover);
       text-decoration: underline;
     }
 
+    /* ── Footer ── */
     footer {
-      margin-top: 3rem;
-      padding-top: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
       border-top: 1px solid var(--border-light);
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      color: var(--text-faint);
-      width: min(100%, 600px);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
     }
 
-    @media (max-width: 480px) {
-      body { padding: 2rem 1rem 3rem; font-size: 18px; }
+    footer span {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.04em;
+      color: var(--text-faint);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 520px) {
+      body { font-size: 17px; padding: 0 1.2rem; }
+      .page { padding: 2.5rem 0 3.5rem; }
+      .focus-grid { grid-template-columns: 1fr; }
+      .capabilities { columns: 1; }
+      .contact-links { flex-direction: column; gap: 0.6rem; }
+      footer { flex-direction: column; gap: 0.3rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <span class="wordmark">Synthoria</span>
-    <div class="wordmark-sep"></div>
-  </header>
+  <div class="page">
+    <header>
+      <div class="wordmark">Synthoria</div>
+      <div class="location">San Francisco, California</div>
+    </header>
 
-  <main>
-    <div class="bio-card">
+    <div class="hero">
+      <h1>Computational pipelines for whole-genome sequencing interpretation and population-scale genomic inference.</h1>
       <p>
-        Algorithms for whole-genome sequencing interpretation
-        and population-scale genomic inference.
-      </p>
-      <p>
-        Research-grade pipelines built on open standards —
-        variant calling, structural variation,
-        and population genetics.
+        We develop methods for extracting biological signal from short-read
+        and long-read whole-genome data. Our work spans variant discovery,
+        structural variation, haplotype phasing, and genotype-phenotype analysis
+        across diverse sequencing platforms.
       </p>
     </div>
 
-    </ul>
+    <section>
+      <div class="section-label">Research Focus</div>
+      <div class="focus-grid">
+        <div class="focus-item">
+          <h3>Variant Calling</h3>
+          <p>SNV, indel, and structural variant detection from matched short-read and long-read WGS</p>
+        </div>
+        <div class="focus-item">
+          <h3>Phasing &amp; Assembly</h3>
+          <p>Haplotype-resolved analysis and diploid assembly from HiFi sequencing</p>
+        </div>
+        <div class="focus-item">
+          <h3>Population Genetics</h3>
+          <p>Ancestry inference, admixture, and population structure from WGS cohorts</p>
+        </div>
+        <div class="focus-item">
+          <h3>Annotation &amp; Interpretation</h3>
+          <p>Functional effect prediction, gene-level burden, and multi-source evidence integration</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Platforms &amp; Methods</div>
+      <ul class="capabilities">
+        <li>Illumina NovaSeq X Plus (PCR-free)</li>
+        <li>PacBio Revio HiFi</li>
+        <li>DeepVariant / DRAGEN benchmarking</li>
+        <li>Long-read SV callers (pbsv, Sniffles2)</li>
+        <li>Pharmacogenomic star-allele calling</li>
+        <li>Methylation from native HiFi kinetics</li>
+        <li>Repeat expansion detection</li>
+        <li>Admixture and PCA (AADR, plink2)</li>
+      </ul>
+    </section>
 
     <div class="contact">
-      <a href="mailto:research@synthoria.bio">research@synthoria.bio</a>
+      <p>Open to collaborations with sequencing providers, research groups, and platform developers.</p>
+      <div class="contact-links">
+        <a href="mailto:research@synthoria.bio">research@synthoria.bio</a>
+        <a href="mailto:markus@synthoria.bio">markus@synthoria.bio</a>
+      </div>
     </div>
-  </main>
 
-  <footer>© 2026 Synthoria Inc.</footer>
+    <div class="ruo-note">
+      All work is research use only. Synthoria does not provide clinical diagnostics,
+      medical advice, or return results to research participants.
+    </div>
+
+    <footer>
+      <span>&copy; 2026 Synthoria Inc.</span>
+      <span>Delaware C-Corp</span>
+    </footer>
+  </div>
 </body>
 </html>
